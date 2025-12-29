@@ -23,16 +23,67 @@ form {
   background: rgb(18, 25, 95); /* Ensure the form background is always white */
 }
 
-button {
-  background-color: #1d4ed8; /* Tailwind's blue-600 */
-  color: white;
-}
+
 
 button:hover {
-  background-color: #1e40af; /* Tailwind's blue-700 */
+  background-color: #adb6d3; /* Tailwind's blue-700 */
 }
 
 /* Ensure the text colors are visible in both modes */
 input, label {
   color: var(--foreground);
+}
+
+
+/* Base Button Styles */
+.button {
+  padding: 10px 15px; /* General padding */
+  border: none; /* Remove default border */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  font-weight: bold; /* Bold text */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+  color: white; /* Default text color for buttons */
+}
+
+/* Color Variants */
+.text-blue {
+  background-color: #3b82f6; /* Blue background */
+}
+
+.text-blue:hover {
+  background-color: #2563eb; /* Darker blue on hover */
+  transform: scale(1.05); /* Slightly grow on hover */
+}
+
+.text-yellow {
+  background-color: #fbbf24; /* Yellow background */
+}
+
+.text-yellow:hover {
+  background-color: #f59e0b; /* Darker yellow on hover */
+  transform: scale(1.05);
+}
+
+.text-purple {
+  background-color: #9333ea; /* Purple background */
+}
+
+.text-purple:hover {
+  background-color: #7e22ce; /* Darker purple on hover */
+  transform: scale(1.05);
+}
+
+.text-red {
+  background-color: #ef4444; /* Red background */
+}
+
+.text-red:hover {
+  background-color: #dc2626; /* Darker red on hover */
+  transform: scale(1.05);
+}
+
+/* Additional Styles (e.g., margins) as needed */
+.mr-2 {
+  margin-right: 0.5rem; /* Add margin to the right */
 }
