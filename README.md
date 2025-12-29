@@ -126,6 +126,10 @@ https://localhost:8080
 | DELETE | /api/departments/{id}        |
 
 
+## ER Diagram
+
+![IMG_20251229_180224_757](https://github.com/user-attachments/assets/c47130f3-65cc-4c6e-8518-e6b6a16162d9)
+
 
 | No. | Group Members      | ID Number |
 |-----|--------------------|-----------|
