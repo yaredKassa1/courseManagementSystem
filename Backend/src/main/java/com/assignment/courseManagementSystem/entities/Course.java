@@ -1,10 +1,7 @@
 package com.assignment.courseManagementSystem.entities;
 
-
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 
 @Entity
 @Table(
@@ -35,26 +32,29 @@ public class Course {
     private String description;
 
     @NotNull
+    @Min(1)
     @Column(name = "credits", nullable = false)
     private Integer credits;
 
-    @NotBlank
+    @NotNull
+    @Enumerated(EnumType.STRING)
     @Column(name = "semester", nullable = false)
-    private String semester;
+    private Semester semester;
 
     // ================= Relationships =================
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "department_id", nullable = false)
     private Department department;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "instructor_id", nullable = false)
     private Instructor instructor;
 
     // ================= Constructors =================
 
-    //  public Course() {}
+    public Course() {
+    }
 
     // ================= Getters & Setters =================
 
@@ -98,11 +98,11 @@ public class Course {
         this.credits = credits;
     }
 
-    public String getSemester() {
+    public Semester getSemester() {
         return semester;
     }
 
-    public void setSemester(String semester) {
+    public void setSemester(Semester semester) {
         this.semester = semester;
     }
 
@@ -121,6 +121,15 @@ public class Course {
     public void setInstructor(Instructor instructor) {
         this.instructor = instructor;
     }
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "courseId=" + courseId +
+                ", courseName='" + courseName + '\'' +
+                ", courseCode='" + courseCode + '\'' +
+                ", credits=" + credits +
+                ", semester=" + semester +
+                '}';
+    }
 }
-
-
