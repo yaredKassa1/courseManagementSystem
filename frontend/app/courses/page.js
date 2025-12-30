@@ -162,8 +162,8 @@ export default function CoursesPage() {
                 "Course Code": c.courseCode,
                 Credits: c.credits,
                 Semester: c.semester,
-                Department: c.departmentName,
-                Instructor: c.instructorName,
+               Department: c.departmentName,
+               Instructor: c.instructorName,
               }))}
               renderActions={(row, index) => (
                 <>
@@ -188,7 +188,9 @@ export default function CoursesPage() {
 
                   <button
                     className="text-red-600"
-                    onClick={() => handleDelete(courses[index].courseId)}
+                    onClick={() =>
+                      handleDelete(courses[index].courseId)
+                    }
                   >
                     Delete
                   </button>

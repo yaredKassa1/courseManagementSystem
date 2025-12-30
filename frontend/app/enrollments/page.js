@@ -67,11 +67,20 @@ export default function EnrollmentsPage() {
     }
   };
 
-  const handleDelete = async (id) => {
-    if (!confirm("Delete this enrollment?")) return;
+ const handleDelete = async (id) => {
+  if (!confirm("Delete this enrollment?")) return;
+
+  try {
     await deleteEnrollment(id);
     fetchEnrollments();
-  };
+    alert("Enrollment deleted successfully!");
+  } catch (err) {
+    // Check if the error message from the backend exists
+    const errorMsg = err.response?.data?.message || "Cannot delete: This record is being used elsewhere.";
+    alert(errorMsg); 
+    console.error("Delete failed", err);
+  }
+};
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -154,7 +163,7 @@ export default function EnrollmentsPage() {
                 "Status",
               ]}
               data={enrollments.map((e) => ({
-                "Student Name": e.studentId,
+                "Student ID": e.studentId,
                 "Course Name": e.courseName,
                 "Enrollment Date": e.enrollmentDate,
                 Status: e.status,
