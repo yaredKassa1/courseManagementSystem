@@ -1,7 +1,16 @@
 import api from "./api";
 
-export const getUsers = (params) =>
-  api.get("/admin/users", { params });
+export const getUsers = (params) => {
+  return api.get("/admin/users", {
+    params: {
+      page: params.page,
+      size: params.size,
+      search: params.search,
+      sortBy: params.sortBy,
+      sortDir: params.sortDir,
+    },
+  });
+};
 
 export const createUser = (data) =>
   api.post("/admin/users", data);
