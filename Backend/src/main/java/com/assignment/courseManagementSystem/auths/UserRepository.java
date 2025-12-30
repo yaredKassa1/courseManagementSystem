@@ -1,4 +1,5 @@
 package com.assignment.courseManagementSystem.auths;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

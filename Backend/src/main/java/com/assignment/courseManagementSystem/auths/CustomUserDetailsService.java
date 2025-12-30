@@ -20,10 +20,15 @@ public class CustomUserDetailsService implements UserDetailsService {
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
+        // Block inactive users
+        if (!user.isEnabled()) {
+            throw new UsernameNotFoundException("User is inactive. Contact admin.");
+        }
+
         return org.springframework.security.core.userdetails.User
                 .withUsername(user.getUsername())
                 .password(user.getPassword())
-                .roles(user.getRole().replace("ROLE_", ""))
+                .roles(user.getRole().replace("ROLE_", "")) // e.g. ROLE_USER → USER
                 .build();
     }
 }

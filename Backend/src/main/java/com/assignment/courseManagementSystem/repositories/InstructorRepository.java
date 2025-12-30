@@ -12,5 +12,8 @@ public interface InstructorRepository extends JpaRepository<Instructor, Long> {
 
 
     Page<Instructor> findByFullNameContainingIgnoreCase(String keyword, Pageable pageable);
+
+    // CRITICAL: Used for login check
+    Optional<Instructor> findByFullName(String fullName);
 }
 
