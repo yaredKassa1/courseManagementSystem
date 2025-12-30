@@ -60,8 +60,12 @@ export default function UsersPage() {
         sortBy,
         sortDir,
       });
-      setUsers(res.data.data);
-      setTotalPages(res.data.totalPages);
+      const usersArray = Array.isArray(res.data)
+        ? res.data
+        : res.data.data || [];
+
+      setUsers(usersArray);
+      setTotalPages(res.data.totalPages || 1);
     } catch {
       setError("Failed to load users");
     } finally {
@@ -89,9 +93,11 @@ export default function UsersPage() {
   };
 
   const toggleStatus = async (user) => {
-    user.active
-      ? await deactivateUser(user.id)
-      : await activateUser(user.id);
+    if (user.enabled) {
+      await deactivateUser(user.id);
+    } else {
+      await activateUser(user.id);
+    }
     fetchUsers();
   };
 
@@ -162,7 +168,7 @@ export default function UsersPage() {
               data={users.map((u) => ({
                 Username: u.username,
                 Role: u.role,
-                Status: u.active ? "ACTIVE" : "INACTIVE",
+                Status: u.enabled ? "ACTIVE" : "INACTIVE",
               }))}
               renderActions={(row, index) => (
                 <>
@@ -185,23 +191,19 @@ export default function UsersPage() {
                     className="text-yellow-600 mr-2"
                     onClick={() => toggleStatus(users[index])}
                   >
-                    {users[index].active ? "Deactivate" : "Activate"}
+                    {users[index].enabled ? "Deactivate" : "Activate"}
                   </button>
 
                   <button
                     className="text-purple-600 mr-2"
-                    onClick={() =>
-                      handleResetPassword(users[index].id)
-                    }
+                    onClick={() => handleResetPassword(users[index].id)}
                   >
                     Reset
                   </button>
 
                   <button
                     className="text-red-600"
-                    onClick={() =>
-                      handleDelete(users[index].id)
-                    }
+                    onClick={() => handleDelete(users[index].id)}
                   >
                     Delete
                   </button>

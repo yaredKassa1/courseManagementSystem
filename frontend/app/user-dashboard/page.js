@@ -11,49 +11,23 @@ export default function UserDashboardPage() {
           🎓 Student Dashboard
         </h1>
 
-        {/* Core Sections */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Academics */}
-          <DashboardCard
-            title="📚 Academics"
-            description="View enrolled courses, course details, and department info."
-            link="/student/academics"
-          />
-
-          {/* Enrollments */}
-          <DashboardCard
-            title="📝 Enrollments"
-            description="View current enrollments and enrollment history."
-            link="/student/enrollments"
-          />
-
-          {/* Progress */}
-          <DashboardCard
-            title="📊 Progress"
-            description="Track credits completed, current semester courses, grades, and GPA."
-            link="/student/progress"
-          />
-
-          {/* Profile */}
-          <DashboardCard
-            title="👤 Profile"
-            description="View and update limited profile fields like email and password."
-            link="/student/profile"
-          />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <DashboardCard title="📘 My Courses" link="/my-courses" />
+          <DashboardCard title="📝 My Enrollments" link="/my-enrollments" />
+          <DashboardCard title="👤 Profile" link="/profile" />
         </div>
       </div>
     </ProtectedRoute>
   );
 }
 
-function DashboardCard({ title, description, link }) {
+function DashboardCard({ title, link }) {
   return (
     <Link
       href={link}
       className="bg-white text-blue-700 p-6 rounded-xl shadow-lg hover:shadow-2xl transition transform hover:-translate-y-1"
     >
-      <h2 className="text-2xl font-semibold mb-2">{title}</h2>
-      <p className="text-sm text-gray-600">{description}</p>
+      <h2 className="text-2xl font-semibold text-center">{title}</h2>
     </Link>
   );
 }

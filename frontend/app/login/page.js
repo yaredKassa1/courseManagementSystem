@@ -22,18 +22,26 @@ export default function LoginPage() {
         { username, password }
       );
 
+      // Store data from your updated AuthResponse.java
       localStorage.setItem("token", response.data.token);
+const { role, username: loggedInName, dashboardType } = response.data;
 
-      const role = response.data.role;
-      if (role === "ROLE_ADMIN") {
-        router.push("/dashboard");
-      } else if (role === "ROLE_USER") {
-        router.push("/user-dashboard");
-      } else {
-        router.push("/");
-      }
-    } catch (err) {
-      setError("Invalid username or password");
+if (role === "ROLE_ADMIN") {
+  router.push("/dashboard");
+} else if (role === "ROLE_USER") {
+  // We use the dashboardType helper from the backend to know 
+  // if this specific 'username' exists in the Student or Instructor table
+  if (dashboardType === "STUDENT_DASHBOARD") {
+    router.push("/user-dashboard");
+  } else if (dashboardType === "INSTRUCTOR_DASHBOARD") {
+    router.push("/instructor-dashboard");
+  } else {
+    // If they are a user but not found in either table
+    router.push("/user-dashboard");
+  }
+}} catch (err) {
+      // Improved error message display
+      setError(err.response?.data || "Invalid username or password");
     } finally {
       setLoading(false);
     }
@@ -50,7 +58,9 @@ export default function LoginPage() {
         </h2>
 
         {error && (
-          <p className="text-red-600 text-sm mb-4 text-center">{error}</p>
+          <p className="text-red-600 text-sm mb-4 text-center bg-red-50 p-2 rounded">
+            {error}
+          </p>
         )}
 
         <div className="mb-5">
@@ -64,7 +74,7 @@ export default function LoginPage() {
             type="text"
             id="username"
             required
-            className="w-full border border-gray-300 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="w-full border border-gray-300 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-blue-400 text-black"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             placeholder="Enter your username"
@@ -82,7 +92,7 @@ export default function LoginPage() {
             type="password"
             id="password"
             required
-            className="w-full border border-gray-300 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="w-full border border-gray-300 rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-blue-400 text-black"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Enter your password"
