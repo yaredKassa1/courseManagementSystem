@@ -34,7 +34,7 @@ export default function ProfilePage() {
 
   return (
     <ProtectedRoute allowedRoles={["ROLE_USER"]}>
-      <div className="p-8 bg-gray-50 min-h-screen">
+      <div className="p-9 bg-gray-50 min-h-screen">
         <h1 className="text-3xl font-bold mb-6 text-gray-800">👤 My Profile</h1>
         <form onSubmit={handleUpdate} className="bg-white p-8 rounded-xl shadow-md max-w-lg border border-gray-100">
           

@@ -100,7 +100,7 @@ export default function DepartmentsPage() {
             });
             setShowModal(true);
           }}
-          className="bg-green-600 text-white px-4 py-2 rounded mb-4"
+          className="bg-green-700 text-white px-5 py-2 rounded mb-4"
         >
           + Add Department
         </button>
@@ -149,7 +149,7 @@ export default function DepartmentsPage() {
               renderActions={(row, index) => (
                 <>
                   <button
-                    className="text-blue-600 mr-3"
+                    className="text-blue-700 mr-3"
                     onClick={() => {
                       setSelectedDepartment(departments[index]);
                       setFormData({
@@ -164,7 +164,7 @@ export default function DepartmentsPage() {
                   </button>
 
                   <button
-                    className="text-red-600"
+                    className="text-red-700"
                     onClick={() =>
                       handleDelete(departments[index].departmentId)
                     }
