@@ -41,7 +41,6 @@ public class Course {
     @Column(name = "semester", nullable = false)
     private Semester semester;
 
-    // ================= Relationships =================
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "department_id", nullable = false)
@@ -51,12 +50,10 @@ public class Course {
     @JoinColumn(name = "instructor_id", nullable = false)
     private Instructor instructor;
 
-    // ================= Constructors =================
 
     public Course() {
     }
 
-    // ================= Getters & Setters =================
 
     public Long getCourseId() {
         return courseId;
