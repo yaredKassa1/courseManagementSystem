@@ -89,8 +89,8 @@ export default function StudentsPage() {
     <ProtectedRoute>
       <Navbar />
 
-      <div className="p-6">
-        <h1 className="text-2xl font-bold mb-4">Students</h1>
+      <div className="p-7">
+        <h1 className="text-2xl font-bold mb-5">Students</h1>
 
         <button
           onClick={() => {
@@ -102,7 +102,7 @@ export default function StudentsPage() {
             });
             setShowModal(true);
           }}
-          className="bg-green-600 text-white px-4 py-2 rounded mb-4"
+          className="bg-green-700 text-white px-4 py-2 rounded mb-4"
         >
           + Add Student
         </button>
