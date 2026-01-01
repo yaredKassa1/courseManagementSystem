@@ -16,6 +16,6 @@ public interface EnrollmentRepository extends JpaRepository<Enrollment, Long> {
     // Filters enrollments specifically for the logged-in student
     List<Enrollment> findByStudentFullName(String fullName);
 
-    // Add this to EnrollmentRepository.java
     List<Enrollment> findByCourseInstructorFullName(String fullName);
+
 }
