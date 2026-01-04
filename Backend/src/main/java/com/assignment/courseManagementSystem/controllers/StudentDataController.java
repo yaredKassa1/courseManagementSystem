@@ -36,6 +36,19 @@ public class StudentDataController {
         this.passwordEncoder = passwordEncoder;
     }
 
+
+    @GetMapping("/dashboard-stats")
+    public ResponseEntity<?> getStudentStats() {
+        Map<String, Object> stats = new HashMap<>();
+
+        // You can later replace these hardcoded values with actual DB queries
+        stats.put("enrolledCourses", 5);
+        stats.put("completedAssignments", 12);
+        stats.put("attendanceRate", 94);
+
+        return ResponseEntity.ok(stats);
+    }
+
     // GET /api/student/my-courses
     @GetMapping("/my-courses")
     public ResponseEntity<?> getMyEnrolledCourses(Principal principal) {

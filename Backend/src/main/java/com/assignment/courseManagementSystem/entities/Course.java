@@ -1,7 +1,10 @@
 package com.assignment.courseManagementSystem.entities;
 
+
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(
@@ -32,27 +35,24 @@ public class Course {
     private String description;
 
     @NotNull
-    @Min(1)
     @Column(name = "credits", nullable = false)
     private Integer credits;
 
-    @NotNull
-    @Enumerated(EnumType.STRING)
+    @NotBlank
     @Column(name = "semester", nullable = false)
-    private Semester semester;
+    private String semester;
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "department_id", nullable = false)
     private Department department;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "instructor_id", nullable = false)
     private Instructor instructor;
 
 
-    public Course() {
-    }
+    //  public Course() {}
 
 
     public Long getCourseId() {
@@ -95,11 +95,11 @@ public class Course {
         this.credits = credits;
     }
 
-    public Semester getSemester() {
+    public String getSemester() {
         return semester;
     }
 
-    public void setSemester(Semester semester) {
+    public void setSemester(String semester) {
         this.semester = semester;
     }
 
@@ -118,15 +118,6 @@ public class Course {
     public void setInstructor(Instructor instructor) {
         this.instructor = instructor;
     }
-
-    @Override
-    public String toString() {
-        return "Course{" +
-                "courseId=" + courseId +
-                ", courseName='" + courseName + '\'' +
-                ", courseCode='" + courseCode + '\'' +
-                ", credits=" + credits +
-                ", semester=" + semester +
-                '}';
-    }
 }
+
+

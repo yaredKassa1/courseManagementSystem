@@ -43,11 +43,10 @@ public class SecurityConfig {
                         session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(HttpMethod.OPTIONS, "/").permitAll()
-                        .requestMatchers("/auth/").permitAll()
+                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                        .requestMatchers("/auth/**").permitAll()
                         .requestMatchers("/user/register").permitAll()
-                        .requestMatchers("/admin/").hasRole("ADMIN")
-                        .requestMatchers("/api/student/").hasAnyRole("USER", "ADMIN")
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtAuthFilter,
@@ -68,3 +67,4 @@ public class SecurityConfig {
         return config.getAuthenticationManager();
     }
 }
+
