@@ -16,8 +16,9 @@ api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401 || error.response?.status === 403) {
-      localStorage.clear();
-      window.location.href = "/login";
+      console.log("Blocked by: ", error.response.status); 
+      // localStorage.clear(); // Comment this temporarily to see the error in console
+      // window.location.href = "/login"; 
     }
     return Promise.reject(error);
   }

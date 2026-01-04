@@ -41,7 +41,6 @@ export default function StudentDashboardPage() {
     fetchStudentData();
   }, []);
 
-
   // Visualizing "Course Progress" or "Grades"
   const performanceData = [
     { subject: "Math", score: 85 },
@@ -51,7 +50,7 @@ export default function StudentDashboardPage() {
   ];
 
   return (
-    <ProtectedRoute allowedRoles={["ROLE_USER"]}>
+    <ProtectedRoute allowedRoles={["ROLE_STUDENT", "ROLE_USER"]}>
       <div className="flex h-screen bg-slate-50 overflow-hidden">
         
         {/* --- STUDENT SIDEBAR --- */}
@@ -192,11 +191,11 @@ export default function StudentDashboardPage() {
         </main>
       </div>
 
-      <style jsx>{
+      <style jsx>{`
         .sidebar-link {
           @apply flex items-center gap-3 p-3 rounded-xl transition-all text-indigo-200 hover:text-white hover:bg-white/10 font-semibold cursor-pointer;
         }
-      }</style>
+      `}</style>
     </ProtectedRoute>
   );
 }
@@ -219,7 +218,7 @@ function StatWidget({ label, value, icon, color }) {
         <p className="text-xs text-slate-400 font-black uppercase tracking-widest">{label}</p>
         <p className="text-3xl font-black text-slate-800 mt-1">{value}</p>
       </div>
-      <div className={p-4 rounded-2xl text-white ${color} shadow-lg shadow-indigo-100}>
+      <div className={`p-4 rounded-2xl text-white ${color} shadow-lg shadow-indigo-100`}>
         {icon}
       </div>
     </div>
@@ -233,7 +232,7 @@ function ManagementCard({ title, desc, link, btnColor }) {
         <h3 className="text-xl font-black text-slate-800 mb-2">{title}</h3>
         <p className="text-slate-500 text-sm leading-relaxed mb-6">{desc}</p>
       </div>
-      <Link href={link} className={block text-center py-3 rounded-xl text-white font-bold text-sm ${btnColor} hover:opacity-90 transition}>
+      <Link href={link} className={`block text-center py-3 rounded-xl text-white font-bold text-sm ${btnColor} hover:opacity-90 transition`}>
         Open Section
       </Link>
     </div>
